@@ -9,6 +9,9 @@
 import UIKit
 
 class TableViewController: UITableViewController {
+    
+    var names = [String]()
+    var name = [NSManagedObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,5 +91,83 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func addAdventurer(_ sender: UIBarButtonItem) {
+        
+        // to alert
+        
+        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
+        
+        print("New Name Added");
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+            
+            guard let textField = alert.textFields?.first,
+                let nameToSave = textField.text else {
+                    return
+            }
+            
+            self.save(name: nameToSave)
+            self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+        
+        /*
+         let saveAction = UIAlertAction(title: "Save",
+         style: .default) {
+         [unowned self] action in
+         
+         guard let textField = alert.textFields?.first,
+         let nameToSave = textField.text else {
+         return
+         }
+         
+         self.names.append(nameToSave)
+         self.tableView.reloadData()
+         }
+         */
+    }
+    
+    // save function
+    
+    func save(name: String) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        // 1
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let entity =
+            NSEntityDescription.entity(forEntityName: "Adventurer",
+                                       in: managedContext)!
+        
+        let name = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        // 3
+        name.setValue(name, forKeyPath: "name")
+        
+        // 4
+        do {
+            try managedContext.save()
+            name.append(name)
+            
+            print(name);
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 
 }

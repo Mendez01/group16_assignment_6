@@ -14,6 +14,7 @@
 		3B02BA11223B132A00FD0AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B02BA0F223B132A00FD0AA2 /* LaunchScreen.storyboard */; };
 		3B782311223B3F5F009A857D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B782310223B3F5F009A857D /* TableViewController.swift */; };
 		3B782313223B47D8009A857D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B782312223B47D8009A857D /* ViewController.swift */; };
+		3B782315223B5176009A857D /* Adventure.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B782314223B5176009A857D /* Adventure.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3B02BA12223B132A00FD0AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B782310223B3F5F009A857D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		3B782312223B47D8009A857D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3B782314223B5176009A857D /* Adventure.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Adventure.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				3B02BA03223B132700FD0AA2 /* AppDelegate.swift */,
 				3B02BA07223B132700FD0AA2 /* Main.storyboard */,
+				3B782314223B5176009A857D /* Adventure.storyboard */,
 				3B782312223B47D8009A857D /* ViewController.swift */,
 				3B782310223B3F5F009A857D /* TableViewController.swift */,
 				3B02BA0D223B132A00FD0AA2 /* Assets.xcassets */,
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B02BA11223B132A00FD0AA2 /* LaunchScreen.storyboard in Resources */,
+				3B782315223B5176009A857D /* Adventure.storyboard in Resources */,
 				3B02BA0E223B132A00FD0AA2 /* Assets.xcassets in Resources */,
 				3B02BA09223B132700FD0AA2 /* Main.storyboard in Resources */,
 			);

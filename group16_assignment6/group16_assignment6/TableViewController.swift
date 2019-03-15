@@ -6,9 +6,13 @@
 //  Copyright © 2019 group16. All rights reserved.
 //
 
-import UIKit
+import UIKit;
+
+import CoreData;
 
 class TableViewController: UITableViewController {
+    
+    var adventurers: [NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

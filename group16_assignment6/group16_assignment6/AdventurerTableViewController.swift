@@ -10,12 +10,16 @@ import UIKit;
 
 import CoreData;
 
-class TableViewController: UITableViewController {
+class AdventurerTableViewController: UITableViewController {
     
-    var adventurers: [NSManagedObject] = []
-
+    // var adventurers: [NSManagedObject] = [];
+    
+    var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(imageArray.count)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,22 +32,82 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        
+        
+        return imageArray.count;
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath)
+        
+        /*
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath);
+        */
         
         
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath) as! AdventureTableViewCell;
 
         // Configure the cell...
-
+        
+        cell.AdventurerImage.image = imageArray[indexPath.row];
+        
+        
+        
+        switch(indexPath.row){
+            
+        case 0:
+            
+            cell.labelName.text = "Han Solo";
+            
+            cell.labelLevel.text = "9";
+            
+            cell.labelClass.text = "Human";
+            
+            cell.labelAttackModifier.text = "20";
+            
+            cell.labelHP.text = "30/100";
+            
+            break;
+            
+        case 1:
+            
+            cell.labelName.text = "Chewbacka";
+            
+            cell.labelLevel.text = "100";
+            
+            cell.labelClass.text = "Wookiee";
+            
+            cell.labelAttackModifier.text = "900";
+            
+            cell.labelHP.text = "670/1000";
+            
+            break;
+            
+        case 2:
+            
+            cell.labelName.text = "Master Yoda";
+            
+            cell.labelLevel.text = "1000";
+            
+            cell.labelClass.text = "Yedi Master";
+            
+            cell.labelAttackModifier.text = "9000";
+            
+            cell.labelHP.text = "100000/100000";
+            
+            break;
+            
+        default:
+            
+            break;
+        }
+ 
         return cell
     }
     

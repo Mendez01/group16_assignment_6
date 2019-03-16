@@ -15,7 +15,8 @@
 		3B02BA0C223B132700FD0AA2 /* group16_assignment6.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B02BA0A223B132700FD0AA2 /* group16_assignment6.xcdatamodeld */; };
 		3B02BA0E223B132A00FD0AA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B02BA0D223B132A00FD0AA2 /* Assets.xcassets */; };
 		3B02BA11223B132A00FD0AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B02BA0F223B132A00FD0AA2 /* LaunchScreen.storyboard */; };
-		3B782311223B3F5F009A857D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B782310223B3F5F009A857D /* TableViewController.swift */; };
+		3B6FA467223C70D700D70DA2 /* AdventureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6FA466223C70D700D70DA2 /* AdventureTableViewCell.swift */; };
+		3B782311223B3F5F009A857D /* AdventurerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B782310223B3F5F009A857D /* AdventurerTableViewController.swift */; };
 		3B782313223B47D8009A857D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B782312223B47D8009A857D /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +31,8 @@
 		3B02BA0D223B132A00FD0AA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B02BA10223B132A00FD0AA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B02BA12223B132A00FD0AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B782310223B3F5F009A857D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3B6FA466223C70D700D70DA2 /* AdventureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureTableViewCell.swift; sourceTree = "<group>"; };
+		3B782310223B3F5F009A857D /* AdventurerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventurerTableViewController.swift; sourceTree = "<group>"; };
 		3B782312223B47D8009A857D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +72,8 @@
 				0F6AEFB6223B61AB0092824E /* khalidStoryBoard.storyboard */,
 				3B782312223B47D8009A857D /* ViewController.swift */,
 				0F6AEFBA223B7CD10092824E /* AdventurerRecruitmentController.swift */,
-				3B782310223B3F5F009A857D /* TableViewController.swift */,
+				3B782310223B3F5F009A857D /* AdventurerTableViewController.swift */,
+				3B6FA466223C70D700D70DA2 /* AdventureTableViewCell.swift */,
 				3B02BA0D223B132A00FD0AA2 /* Assets.xcassets */,
 				3B02BA0F223B132A00FD0AA2 /* LaunchScreen.storyboard */,
 				3B02BA12223B132A00FD0AA2 /* Info.plist */,
@@ -152,11 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B02BA0C223B132700FD0AA2 /* group16_assignment6.xcdatamodeld in Sources */,
+				3B6FA467223C70D700D70DA2 /* AdventureTableViewCell.swift in Sources */,
 				0F6AEFB9223B7AA10092824E /* AdventurerRecruitmentCollectionViewCell.swift in Sources */,
 				3B02BA04223B132700FD0AA2 /* AppDelegate.swift in Sources */,
 				3B782313223B47D8009A857D /* ViewController.swift in Sources */,
 				0F6AEFBB223B7CD10092824E /* AdventurerRecruitmentController.swift in Sources */,
-				3B782311223B3F5F009A857D /* TableViewController.swift in Sources */,
+				3B782311223B3F5F009A857D /* AdventurerTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

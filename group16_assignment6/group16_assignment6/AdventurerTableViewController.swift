@@ -12,20 +12,115 @@ import CoreData;
 
 class AdventurerTableViewController: UITableViewController {
     
-    // var adventurers: [NSManagedObject] = [];
+    var adventurers = [NSManagedObject]()
     
-    var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
+    // var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(imageArray.count)
+        
+        // NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil);
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        // this is to delete every row in core data 
+        // only keep this if nessary
+        
+        /*
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        let managedContext = appDelegate.managedObjectContext;
+        // need to have name
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Adventurer")
+        // store fetch result into list
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        // try catch
+        // say want tto do somethings try
+        // to fetch results
+        
+        // grab fetch request (above)
+        // grab entity name
+        
+        // get managed object
+        do {
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+        } catch {
+            // save as an error if failed
+            let nserror = error as NSError
+            NSLog("Unable to fetch \(nserror), \(nserror.userInfo)")
+            // won't crash program
+            abort()
+        }
+        
+        if let results = fetchedResults {
+            adventurers = results
+        }
+        
+        for adventurer in adventurers{
+            managedContext.delete(adventurer)
+        }
+         */
+        
+        
+    }
+    
+    func loadList(){
+        //load data here
+        self.tableView.reloadData()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        let managedContext = appDelegate.managedObjectContext;
+        // need to have name
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Adventurer")
+        // store fetch result into list
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        // try catch
+        // say want tto do somethings try
+        // to fetch results
+        
+        // grab fetch request (above)
+        // grab entity name
+        
+        // get managed object
+        do {
+            // store to variable if ok
+            try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
+        } catch {
+            // save as an error if failed
+            let nserror = error as NSError
+            NSLog("Unable to fetch \(nserror), \(nserror.userInfo)")
+            // won't crash program
+            abort()
+        }
+        
+        // if passed try
+        // store back
+        // if I can create a var out of this,
+        // then I know that it has
+        // prevents the storage of nil values
+        
+        if let results = fetchedResults {
+            adventurers = results
+        }
+        
+        self.tableView.reloadData();
+        
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -35,13 +130,12 @@ class AdventurerTableViewController: UITableViewController {
         return 1
     }
 
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        
-        return imageArray.count;
+        return adventurers.count;
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -53,108 +147,90 @@ class AdventurerTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath) as! AdventureTableViewCell;
 
+        /*
         // Configure the cell...
         
         cell.AdventurerImage.image = imageArray[indexPath.row];
         
+        */
         
         
-        switch(indexPath.row){
-            
-        case 0:
-            
-            cell.labelName.text = "Han Solo";
-            
-            cell.labelLevel.text = "9";
-            
-            cell.labelClass.text = "Human";
-            
-            cell.labelAttackModifier.text = "20";
-            
-            cell.labelHP.text = "30/100";
-            
-            break;
-            
-        case 1:
-            
-            cell.labelName.text = "Chewbacka";
-            
-            cell.labelLevel.text = "100";
-            
-            cell.labelClass.text = "Wookiee";
-            
-            cell.labelAttackModifier.text = "900";
-            
-            cell.labelHP.text = "670/1000";
-            
-            break;
-            
-        case 2:
-            
-            cell.labelName.text = "Master Yoda";
-            
-            cell.labelLevel.text = "1000";
-            
-            cell.labelClass.text = "Yedi Master";
-            
-            cell.labelAttackModifier.text = "9000";
-            
-            cell.labelHP.text = "100000/100000";
-            
-            break;
-            
-        default:
-            
-            break;
-        }
- 
-        return cell
+        // take managed person
+        // convert data out and place
+        // into table view
+        
+        let adventurer = adventurers[indexPath.row];
+        
+        cell.labelName.text = adventurer.value(forKey: "name") as? String;
+        
+        cell.labelClass.text = adventurer.value(forKey: "adv_class") as? String;
+        
+        cell.labelLevel.text = String(adventurer.value(forKey: "level") as! Int);
+        
+        let currentHP:Int = adventurer.value(forKey: "currentHP") as! Int;
+        
+        let totalHP:Int = adventurer.value(forKey: "totalHP") as! Int;
+        
+        let labelHPText:String = "\(currentHP)/\(totalHP)";
+        
+        cell.labelHP.text = labelHPText;
+        
+        cell.labelAttackModifier.text = String(adventurer.value(forKey: "attack") as! Double);
+        
+        /*
+        let age:Int = person.value(forKey: "age") as! Int
+        cell.cellAge.text = String(age)
+        cell.cellOccupation.text = person.value(forKey: "occupation") as? String
+        */
+        
+        return cell;
+        
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // this adds a adventurer
+    
+    func addAdventurer(name: String, adv_class: String) {
+        
+        // app delegate communicates
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        
+        // the content managed
+        let managedContext = appDelegate.managedObjectContext;
+        
+        // need correct entity name 
+        let entity = NSEntityDescription.entity(forEntityName: "Adventurer", in: managedContext)
+        
+        let adventurer = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        let level:Int = 0;
+        
+        let attack:Decimal = 0.00;
+        
+        let currentHP:Int = 0;
+        
+        let totalHP:Int = 0;
+        
+        //let adv_class:String = "Class";
+        
+        // must match correct keys
+        adventurer.setValue(name, forKey: "name");
+        adventurer.setValue(level, forKey: "level");
+        adventurer.setValue(attack, forKey: "attack");
+        adventurer.setValue(currentHP, forKey: "currentHP");
+        adventurer.setValue(totalHP, forKey: "totalHP");
+        adventurer.setValue(adv_class, forKey: "adv_classs");
+        
+        // try to save back to managed context
+        do {
+            try managedContext.save()
+        } catch {
+            let nserror = error as NSError
+            NSLog("Unable to save \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        // if succeds add to entity
+        adventurers.append(adventurer)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

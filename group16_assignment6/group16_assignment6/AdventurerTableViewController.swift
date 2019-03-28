@@ -12,22 +12,10 @@ import CoreData;
 
 class AdventurerTableViewController: UITableViewController {
     
-    var adventurers = [NSManagedObject]()
-    
-    var selected_adventure_names = [String]();
-    
-    var wantsToDelete = false;
-    
-    // var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
+    var adventurers = [NSManagedObject]();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.wantsToDelete = false;
-        
-        // allow the table to be multi selected
-        self.tableView.allowsMultipleSelection = true
-        self.tableView.allowsMultipleSelectionDuringEditing = true
         
         // NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil);
         
@@ -169,44 +157,6 @@ class AdventurerTableViewController: UITableViewController {
         return [delete];
         
     }
-    
-    
-    /*
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-     let managedContext = appDelegate.managedObjectContext;
-     // need to have name
-     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Adventurer")
-     // store fetch result into list
-     var fetchedResults:[NSManagedObject]? = nil
-     
-     // try catch
-     // say want tto do somethings try
-     // to fetch results
-     
-     // grab fetch request (above)
-     // grab entity name
-     
-     // get managed object
-     do {
-     try fetchedResults = managedContext.fetch(fetchRequest) as? [NSManagedObject]
-     } catch {
-     // save as an error if failed
-     let nserror = error as NSError
-     NSLog("Unable to fetch \(nserror), \(nserror.userInfo)")
-     // won't crash program
-     abort()
-     }
-     
-     if let results = fetchedResults {
-     adventurers = results
-     }
-     
-     for adventurer in adventurers{
-     managedContext.delete(adventurer)
-     }
-     
-     }
-     */
     
     func loadList(){
         //load data here

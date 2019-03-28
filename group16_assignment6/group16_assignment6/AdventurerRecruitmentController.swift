@@ -47,17 +47,22 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
     // name and class
     @IBAction func SaveButtonPressed(_ sender: AdventurerSaveButton) {
         
-        print("Save Button Pressed");
+        if !self.NameTextField.text!.isEmpty && !self.ClassTextField.text!.isEmpty {
+            
+            print("Save Button Pressed");
+            
+            let name:String = NameTextField.text!;
+            
+            print("New name is \(name)");
+            
+            let adv_class:String = ClassTextField.text!;
+            
+            print("New class is \(adv_class)");
+            
+            addAdventurer(name: name, adv_class: adv_class);
+        }
         
-        let name:String = NameTextField.text!;
         
-        print("New name is \(name)");
-        
-        let adv_class:String = ClassTextField.text!;
-        
-        print("New class is \(adv_class)");
-        
-        addAdventurer(name: name, adv_class: adv_class);
     }
     
     // this adds a adventurer
@@ -77,13 +82,16 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         
         // add stuff to the adventurer 
         
-        let level:Int = 0;
+        let level:Int = 1;
         
-        let attack:Decimal = 0.00;
+        let attack = Float.random(in: 2 ..< 4)
         
-        let currentHP:Int = 0;
+        let totalHP = Int.random(in: 100 ..< 201);
         
-        let totalHP:Int = 0;
+        var currentHP = totalHP - 0;
+        
+        //let imageName:String ;
+        
         
         print("\(name) \(adv_class)");
         
@@ -96,6 +104,7 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         adventurer.setValue(currentHP, forKey: "currentHP");
         adventurer.setValue(totalHP, forKey: "totalHP");
         adventurer.setValue(adv_class, forKey: "adv_class");
+        //adventurer.setValue(imageName, forKey: "imageName");
         
         // try to save back to managed context
         do {

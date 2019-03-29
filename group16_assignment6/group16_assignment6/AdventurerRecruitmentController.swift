@@ -16,6 +16,9 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet weak var ClassTextField: UITextField!
     
+    // keep track of image selected
+    @IBOutlet weak var img: UIImage!;
+    
     var adventurers = [NSManagedObject]();
     
     var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
@@ -131,6 +134,12 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         textField.resignFirstResponder();
         
         return true
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         
     }
     

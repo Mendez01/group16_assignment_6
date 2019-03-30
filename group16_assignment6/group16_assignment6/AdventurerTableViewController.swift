@@ -270,7 +270,9 @@ class AdventurerTableViewController: UITableViewController {
         
         cell.labelHP.text = labelHPText;
         
-        cell.labelAttackModifier.text = String(adventurer.value(forKey: "attack") as! Double);
+        cell.labelAttackModifier.text = (adventurer.value(forKey: "attack") as! String);
+        
+        cell.AdventurerImage.image = UIImage(named: adventurer.value(forKey: "imageName") as! String);
         
         /*
          let age:Int = person.value(forKey: "age") as! Int
@@ -300,7 +302,7 @@ class AdventurerTableViewController: UITableViewController {
         
         let level:Int = 0;
         
-        let attack:Decimal = 0.00;
+        let attack:String = "";
         
         let currentHP:Int = 0;
         
@@ -350,13 +352,13 @@ class AdventurerTableViewController: UITableViewController {
         
         adventurerDetailViewController._class = adventurer.value(forKey: "adv_class") as? String;
         
-        adventurerDetailViewController._attack = String(adventurer.value(forKey: "attack") as! Double);
+        adventurerDetailViewController._attack = (adventurer.value(forKey: "attack") as! String);
         
         adventurerDetailViewController._currHP = String(adventurer.value(forKey: "currentHP") as! Int);
         
         adventurerDetailViewController._hp = String(adventurer.value(forKey: "totalHP") as! Int);
         
-        // adventurerDetailViewController.getImage.text = cell.AdventurerImage!;
+        adventurerDetailViewController._imgName = (adventurer.value(forKey: "imageName") as! String);
         
         // pass over the list of adventurers
         adventurerDetailViewController.adventurers = adventurers;
@@ -365,6 +367,6 @@ class AdventurerTableViewController: UITableViewController {
         adventurerDetailViewController._advIndex = indexPath.row;
         
         self.navigationController?.pushViewController(adventurerDetailViewController, animated: true);
-        
+        // self.navigationController?.present(adventurerDetailViewController, animated: true, completion: nil)
     }
 }

@@ -16,12 +16,18 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet weak var ClassTextField: UITextField!
     
+    //var imageIndex:Int = 0;
+    
+    var currIndexPath:IndexPath = [];
+    
     // keep track of image selected
-    @IBOutlet weak var img: UIImage!;
+    var imageName:String = "";
     
     var adventurers = [NSManagedObject]();
     
     var imageArray = [UIImage(named: "download"), UIImage(named: "download (1)"), UIImage(named: "561bf8581200002e007e4e5b")]
+    
+    var imageNames = ["download", "download (1)", "561bf8581200002e007e4e5b"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +39,8 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         NameTextField.delegate = self;
         
         ClassTextField.delegate = self;
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,7 +58,9 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
     // name and class
     @IBAction func SaveButtonPressed(_ sender: AdventurerSaveButton) {
         
-        if !self.NameTextField.text!.isEmpty && !self.ClassTextField.text!.isEmpty {
+        if (!self.NameTextField.text!.isEmpty) && (!self.ClassTextField.text!.isEmpty) && (!self.imageName.isEmpty) {
+            
+            print("Image name = \(self.imageName)");
             
             print("Save Button Pressed");
             
@@ -87,7 +97,11 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         
         let level:Int = 1;
         
-        let attack = Float.random(in: 2 ..< 4)
+        // let attack = (floor(100 * Float.random(in: 2 ..< 4))/100);
+        
+        let tempAttack = Float.random(in: 2..<4);
+        
+        let attack = forTrailingZero(temp: tempAttack);
         
         let totalHP = Int.random(in: 100 ..< 201);
         
@@ -107,7 +121,7 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
         adventurer.setValue(currentHP, forKey: "currentHP");
         adventurer.setValue(totalHP, forKey: "totalHP");
         adventurer.setValue(adv_class, forKey: "adv_class");
-        //adventurer.setValue(imageName, forKey: "imageName");
+        adventurer.setValue(imageName, forKey: "imageName");
         
         // try to save back to managed context
         do {
@@ -139,8 +153,39 @@ class AdventurerRecruitmentController: UIViewController, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        // can't get the image name like this
+        // will have to get it from a list
+        // we have set up at the top of the class
         
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! AdventurerRecruitmentCollectionViewCell;
         
+        if (currIndexPath != indexPath){
+            
+            // remove the highlight of the old one
+            
+            var cell = collectionView.cellForItem(at: currIndexPath)
+            cell?.layer.borderWidth = 0.0
+            // cell?.layer.borderColor = UIColor.blue.cgColor
+            
+            currIndexPath = indexPath;
+            
+            // this is the new cell that was selected highlight it
+            
+            cell = collectionView.cellForItem(at: currIndexPath)
+            cell?.layer.borderWidth = 4.0
+            cell?.layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        // the name of the image
+        // selected is based on the
+        // indexPath.row from our image array
+        imageName = imageNames[indexPath.row];
+        
+    }
+    
+    func forTrailingZero(temp: Float) -> String {
+        let tempVar = String(format: "%.2f", temp)
+        return tempVar
     }
     
 }

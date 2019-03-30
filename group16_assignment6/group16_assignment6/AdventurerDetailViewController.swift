@@ -67,6 +67,8 @@ class AdventurerDetailViewController: UIViewController {
         getAttack.text = _attack;
         getHP.text = "\(_currHP!)/\(_hp!)";
         
+        getImage.image = UIImage(named: _imgName);
+        
         // this is used to keep track in quest
         _advHP = Int(_hp!)!;
         _advLV = Int(_lv!)!;
@@ -219,6 +221,11 @@ class AdventurerDetailViewController: UIViewController {
         
         self.LogDetails.text = self.LogDetails.text + "\n Ended the quest.";
 
+        // let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        
+        // let adventurerDetailViewController = storyboard.instantiateViewController(withIdentifier: "AdventureTableViewController") as! AdventurerTableViewController ;
+        
+        // self.navigationController?.pushViewController(adventurerDetailViewController, animated: true);
         
     }
     /*

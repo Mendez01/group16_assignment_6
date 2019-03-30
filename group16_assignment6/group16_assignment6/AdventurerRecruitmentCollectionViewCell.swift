@@ -11,4 +11,7 @@ import UIKit
 class AdventurerRecruitmentCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var image: UIImageView!
+    
+    
+    
 }

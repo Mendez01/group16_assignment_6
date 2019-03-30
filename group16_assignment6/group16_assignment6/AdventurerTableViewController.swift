@@ -66,14 +66,6 @@ class AdventurerTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("Did select the row");
-        
-        // print(self.selected_adventure_names[indexPath.row])
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.adventurers.count
@@ -335,5 +327,44 @@ class AdventurerTableViewController: UITableViewController {
         
         // if succeds add to entity
         adventurers.append(adventurer)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        
+        let adventurerDetailViewController = storyboard.instantiateViewController(withIdentifier: "AdventurerDetailViewController") as! AdventurerDetailViewController ;
+
+        // let cell = tableView.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath) as! AdventureTableViewCell;
+        
+        let adventurer = self.adventurers[indexPath.row];
+        
+        // we do this instead of the label.text
+        // becasue when we instantiate the label.text is set to
+        // nul, we needed to instantiate those in view did load
+        // and reset them there for the CollectionViewController
+        
+        adventurerDetailViewController._name = adventurer.value(forKey: "name") as? String;
+        
+        adventurerDetailViewController._lv = String(adventurer.value(forKey: "level") as! Int);
+        
+        adventurerDetailViewController._class = adventurer.value(forKey: "adv_class") as? String;
+        
+        adventurerDetailViewController._attack = String(adventurer.value(forKey: "attack") as! Double);
+        
+        adventurerDetailViewController._currHP = String(adventurer.value(forKey: "currentHP") as! Int);
+        
+        adventurerDetailViewController._hp = String(adventurer.value(forKey: "totalHP") as! Int);
+        
+        // adventurerDetailViewController.getImage.text = cell.AdventurerImage!;
+        
+        // pass over the list of adventurers
+        adventurerDetailViewController.adventurers = adventurers;
+        
+        // index of adventurer to update data in quest
+        adventurerDetailViewController._advIndex = indexPath.row;
+        
+        self.navigationController?.pushViewController(adventurerDetailViewController, animated: true);
+        
     }
 }

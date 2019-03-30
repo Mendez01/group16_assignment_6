@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdventureCell" rowHeight="192" id="7Go-8o-PsS" customClass="AdventureTableViewCell" customModule="group16_assignment6" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AdventurerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdventureCell" rowHeight="192" id="7Go-8o-PsS" customClass="AdventureTableViewCell" customModule="group16_assignment6" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="192"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Go-8o-PsS" id="k2K-p8-0VC">
@@ -122,7 +122,6 @@
                                     <outlet property="labelHP" destination="q3V-7f-jwh" id="OPl-Ko-2lt"/>
                                     <outlet property="labelLevel" destination="N0t-Mq-ddU" id="7eJ-rn-9Fr"/>
                                     <outlet property="labelName" destination="rpD-1C-6cY" id="pu0-cK-7ps"/>
-                                    <segue destination="3EF-ul-L4e" kind="show" id="N0Q-b9-WWz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -312,11 +311,11 @@
             </objects>
             <point key="canvasLocation" x="-886" y="76"/>
         </scene>
-        <!--View Controller-->
+        <!--Adventurer Detail View Controller-->
         <scene sceneID="qCu-S6-Ory">
             <objects>
-                <viewController id="3EF-ul-L4e" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RS2-Kp-vHd">
+                <viewController storyboardIdentifier="AdventurerDetailViewController" id="3EF-ul-L4e" customClass="AdventurerDetailViewController" customModule="group16_assignment6" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RS2-Kp-vHd" customClass="AdventurerDetailView" customModule="group16_assignment6" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -329,6 +328,9 @@
                                 <state key="normal" title="End Quest">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="EndQuest:" destination="3EF-ul-L4e" eventType="touchUpInside" id="tnf-t7-5ug"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qvc-v8-DvT">
                                 <rect key="frame" x="20" y="216" width="335" height="197"/>
@@ -351,7 +353,7 @@ You died..</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-Ev-yET">
-                                <rect key="frame" x="20" y="189.5" width="79" height="6.5"/>
+                                <rect key="frame" x="20" y="169.5" width="79" height="36.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -365,8 +367,8 @@ You died..</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gLs-eW-ikt">
                                 <rect key="frame" x="205" y="50" width="130" height="106"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-Zs-Rtb">
-                                        <rect key="frame" x="0.0" y="0.0" width="129.5" height="20.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-Zs-Rtb">
+                                        <rect key="frame" x="0.0" y="0.0" width="110.5" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8O-eM-bYr">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
@@ -375,7 +377,7 @@ You died..</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBT-1b-cFT">
-                                                <rect key="frame" x="110" y="0.0" width="19.5" height="20.5"/>
+                                                <rect key="frame" x="91" y="0.0" width="19.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -405,8 +407,8 @@ You died..</string>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="Glg-sl-uWH">
-                                        <rect key="frame" x="0.0" y="85.5" width="130" height="20.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="Glg-sl-uWH">
+                                        <rect key="frame" x="0.0" y="85.5" width="110" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9L-JM-cFs">
                                                 <rect key="frame" x="0.0" y="0.0" width="23" height="20.5"/>
@@ -415,7 +417,7 @@ You died..</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlU-HU-lfb">
-                                                <rect key="frame" x="107" y="0.0" width="23" height="20.5"/>
+                                                <rect key="frame" x="87" y="0.0" width="23" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -435,11 +437,11 @@ You died..</string>
                             <constraint firstItem="u3O-Ev-yET" firstAttribute="leading" secondItem="PMz-3Q-7Bc" secondAttribute="leading" constant="20" id="37P-bB-z0G"/>
                             <constraint firstItem="qvc-v8-DvT" firstAttribute="leading" secondItem="PMz-3Q-7Bc" secondAttribute="leading" constant="20" id="Hwc-OD-tME"/>
                             <constraint firstItem="UNP-5z-9HK" firstAttribute="leading" secondItem="PMz-3Q-7Bc" secondAttribute="leading" constant="30" id="ISa-HV-3IK"/>
-                            <constraint firstItem="qvc-v8-DvT" firstAttribute="top" secondItem="u3O-Ev-yET" secondAttribute="bottom" constant="20" id="MBa-Wj-VBI"/>
+                            <constraint firstItem="qvc-v8-DvT" firstAttribute="top" secondItem="u3O-Ev-yET" secondAttribute="bottom" constant="10" id="MBa-Wj-VBI"/>
                             <constraint firstItem="gLs-eW-ikt" firstAttribute="leading" secondItem="UNP-5z-9HK" secondAttribute="trailing" constant="40" id="Nb0-dd-669"/>
                             <constraint firstItem="gLs-eW-ikt" firstAttribute="top" secondItem="PMz-3Q-7Bc" secondAttribute="top" constant="30" id="OgM-XJ-YwF"/>
                             <constraint firstItem="UNP-5z-9HK" firstAttribute="top" secondItem="PMz-3Q-7Bc" secondAttribute="top" constant="30" id="U56-ev-FMl"/>
-                            <constraint firstItem="u3O-Ev-yET" firstAttribute="top" secondItem="UNP-5z-9HK" secondAttribute="bottom" constant="30" id="dWn-Jn-KH3"/>
+                            <constraint firstItem="u3O-Ev-yET" firstAttribute="top" secondItem="UNP-5z-9HK" secondAttribute="bottom" constant="10" id="dWn-Jn-KH3"/>
                             <constraint firstItem="PMz-3Q-7Bc" firstAttribute="trailing" secondItem="qvc-v8-DvT" secondAttribute="trailing" constant="20" id="dxO-g2-icd"/>
                             <constraint firstItem="qvc-v8-DvT" firstAttribute="top" secondItem="gLs-eW-ikt" secondAttribute="bottom" constant="60" id="gw8-ad-x50"/>
                             <constraint firstItem="gLs-eW-ikt" firstAttribute="leading" secondItem="UNP-5z-9HK" secondAttribute="trailing" constant="30" id="hSw-T6-ZeK"/>
@@ -448,10 +450,19 @@ You died..</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PMz-3Q-7Bc"/>
                     </view>
+                    <connections>
+                        <outlet property="LogDetails" destination="qvc-v8-DvT" id="Tgg-gi-s2M"/>
+                        <outlet property="getAttack" destination="FwI-HN-Zdz" id="eso-wd-vme"/>
+                        <outlet property="getClass" destination="cKp-lI-Lyz" id="xWk-ga-uTM"/>
+                        <outlet property="getHP" destination="KlU-HU-lfb" id="GyV-2R-1aA"/>
+                        <outlet property="getImage" destination="UNP-5z-9HK" id="KBF-8G-730"/>
+                        <outlet property="getLV" destination="dBT-1b-cFT" id="99t-yB-fAe"/>
+                        <outlet property="getName" destination="n8O-eM-bYr" id="bNc-Rd-16u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pd7-ws-LyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-868" y="-666"/>
+            <point key="canvasLocation" x="-868" y="-666.11694152923542"/>
         </scene>
     </scenes>
     <resources>
